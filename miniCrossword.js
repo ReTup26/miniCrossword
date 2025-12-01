@@ -148,6 +148,7 @@ function generateCrossword(inputField, maxAttempts = 100) {
                         break;
                     }
                 }
+                if (!flagNotFull) break;
             }
         }
         return flagNotFull ? false : field.map(row => row.join('')).join('\n'); //Возвращение решенного кроссворда или false
@@ -184,4 +185,5 @@ function generateCrossword(inputField, maxAttempts = 100) {
     const crossword = await generateCrossword(fieldInput); //Необязательный параметр - количество попыток генерации, по умолчанию - 100
     //Время выполнения зависит от размера сетки, а также от случайного выбора порядка перебора словаря
     console.log(crossword ? crossword : 'Решение не найдено'); //Вывод решенного кроссворда или сообщение об отсутствии решения
+
 })();
