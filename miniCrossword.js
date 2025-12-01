@@ -72,7 +72,12 @@ function possibleCrossword(field){
                     }
                 } 
             }
+            if (curRowPosStar + 1 !== field[0].length && field.length[0] - curRowPosStar - 1 < minLengthWord) {
+                isPossible = false;
+                break;
+            }
         }
+        
         for (let col = 0; col < field[0].length; ++col) {
             let prevColPosStar = -1;
             let curColPosStar = -1;
@@ -86,7 +91,10 @@ function possibleCrossword(field){
                         break;
                     }
                 } 
-
+            }
+            if (curColPosStar + 1 !== field.length && field.length - curColPosStar - 1 < minLengthWord) {
+                isPossible = false;
+                break;
             }
         }
     }
@@ -136,7 +144,7 @@ function generateCrossword(inputField, maxAttempts = 100) {
                             if (!checkChangeSymb){
                                 break; //Если последний символ не изменился, то решения не будет найдено
                             }
-                            //console.log(field); //Пошаговое отображение заполнения сетки
+                            console.log(field); //Пошаговое отображение заполнения сетки
                         }
                     }
                 }
@@ -185,5 +193,4 @@ function generateCrossword(inputField, maxAttempts = 100) {
     const crossword = await generateCrossword(fieldInput); //Необязательный параметр - количество попыток генерации, по умолчанию - 100
     //Время выполнения зависит от размера сетки, а также от случайного выбора порядка перебора словаря
     console.log(crossword ? crossword : 'Решение не найдено'); //Вывод решенного кроссворда или сообщение об отсутствии решения
-
 })();
